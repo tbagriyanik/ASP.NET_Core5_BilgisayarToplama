@@ -1,0 +1,109 @@
+﻿@page "{sec?}/{sil?}"
+@model BilisimBilgisayar.Pages.PCToplaModel
+
+@{
+    ViewData["Title"] = "PC Toplama";
+Layout = "_Layout";
+}
+
+<h1>PC Toplama</h1>
+<div class="row">
+    <div class="col-8">
+        <form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Urun[0].UrunAdi)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.Urun[0].UrunTeknikBilgileri)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.Urun[0].UrunFiyat)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.Urun[0].kategori)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Urun) {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.UrunAdi)
+                        </td>
+                        <td><a href="/Urunler/Details/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.UrunTeknikBilgileri)
+                        </a>
+                        </td>
+                        <td align="right">@Html.DisplayFor(modelItem => item.UrunFiyat) ₺
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.kategori.KategoriAdi)
+                        </td>
+                        <td>
+                            <button name="sec" value="@item.ID" class="btn btn-outline-primary">Seç</button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </form>
+    </div>
+</div>
+
+<div id="sepetDiv">
+    <div id="baslik">
+        Sepet
+    </div>
+    <form>
+        <div id="nesneler">
+            @{int say=0; double toplam=0;}
+            <table width="100%" class="table table-striped">
+                @foreach (var item in Model.urunListesi) {
+             <tr>
+                 <td valign="middle" width="20">
+                     <button name="sil" value="@item" class="btn-sm btn-outline-danger">❌</button>
+                 </td>
+                 <td>@Model.urunAdiGetir(item)</td>
+                 <td align="right" nowrap class="text-dark">@String.Format("{0:0,0.0}",@Model.urunFiyatiGetir(item)) ₺</td>
+                 @{say++; toplam+=Convert.ToDouble(Model.urunFiyatiGetir(item));}
+             </tr>
+                }
+            </table>
+            @if(toplam>0) {
+               <p align="right" class="text-danger h3">@String.Format("{0:0,0.0}",@toplam) ₺</p>
+            }
+            @if(say==0) {
+            <p>Ürün Seçiniz...</p>
+            }
+        </div>
+    </form>
+    <div class="alert alert-warning alert-dismissible p-3">@Model.mesaj <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+</div>
+<style>
+    #sepetDiv {
+        margin: auto;
+        position: fixed;
+        margin: auto;
+        right: 2px;
+        top: 100px;
+        width: 300px;
+        z-index: 999;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: solid 1px gray;
+        padding: 5px;
+        overflow-y: scroll;
+        max-height: 50%;
+    }
+
+    #nesneler {
+        width: 100%;
+    }
+
+        #nesneler p {
+            margin: 5px;
+        }
+
+    #baslik {
+        font-size: 16pt;
+        font-family: Tahoma;
+        text-align: center;
+        color: orangered;
+        border-bottom: dashed 1px red;
+    }
+</style>

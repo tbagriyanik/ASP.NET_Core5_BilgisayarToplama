@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BilisimBilgisayar.Models.Urun>
+    @{
+    ViewData["Title"] = "Tuzla Bilişim";
+}
+
+    <div class="text-center">
+        <h1>Tuzla Bilişim - Bilgisayar Toplama</h1>
+        <div class="row">
+            <div class="col-6">
+                <p class="alert-primary">Eve Teslim</p>
+                <a href="/PCTopla">
+                    <img src="/siteResimleri/paket.jpg" width="250" />
+                </a>
+            </div>
+            <div class="col-6">
+                <p class="alert-primary">Yerinde Montaj</p>
+                <a href="/PCTopla">
+                    <img src="/siteResimleri/montaj.jpg" width="250" />
+                </a>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            @foreach (var urunKayit in Model)
+            {
+            <div class="col-3">
+                <h5 class="font-weight-normal">@Html.DisplayFor(modelItem => urunKayit.UrunAdi)</h5>
+                <a href="/Urunler/Details/@Html.DisplayFor(modelItem => urunKayit.ID)">
+                    <img src="/uploads/@Html.DisplayFor(modelItem => urunKayit.UrunResimDosyasi)" />
+                </a>
+                <h5 class="font-weight-light">@Html.DisplayFor(modelItem => urunKayit.UrunFiyat) ₺</h5>
+            </div>
+            }
+        </div>
+        <p>@ViewBag.kategoriSayisi kategoride @ViewBag.urunSayisi ürün bulunmaktadır.</p>
+    </div>

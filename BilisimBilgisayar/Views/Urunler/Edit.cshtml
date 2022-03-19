@@ -1,0 +1,51 @@
+﻿@model BilisimBilgisayar.Models.Urun
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Urun</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="UrunAdi" class="control-label"></label>
+                <input asp-for="UrunAdi" class="form-control" />
+                <span asp-validation-for="UrunAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrunResimDosyasi" class="control-label"></label>
+                <input asp-for="UrunResimDosyasi" class="form-control" />
+                <span asp-validation-for="UrunResimDosyasi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrunTeknikBilgileri" class="control-label"></label>
+                <input asp-for="UrunTeknikBilgileri" class="form-control" />
+                <span asp-validation-for="UrunTeknikBilgileri" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UrunFiyat" class="control-label"></label>
+                <input asp-for="UrunFiyat" class="form-control" />
+                <span asp-validation-for="UrunFiyat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="kategoriID" class="control-label"></label>
+                <select asp-for="kategoriID" class="form-control" asp-items="ViewBag.kategoriID"></select>
+                <span asp-validation-for="kategoriID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

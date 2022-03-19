@@ -1,0 +1,44 @@
+﻿@page "{sil?}"
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model BilisimBilgisayar.Pages.ResimIslemleriModel
+@{
+    Layout = "_Layout";
+}
+<div class="border border-primary p-3 rounded">
+    <h1>Resim İşlemleri</h1>
+    <p>
+        JPG, PNG, SVG, ICO, BMP, TIFF, WEBP ve GIF türü dosya desteği vardır.<br>
+        Listeden <strong>dosya adı</strong> alınarak ilgili ürüne resmi eklenebilir.<br>
+        <div class="alert-danger p-3 m-1">Dosya boyutu kontrolü yok (~28 MB max), istenmeyen dosya türleri de atılabilir!</div>
+    </p>
+    <form method="post" enctype="multipart/form-data">
+        <h2>Yeni Ekle</h2>
+        <input type="file" name="postedFiles" multiple accept="image/*" />
+        <input type="submit" name="name" value="🛩 Upload - Yolla" asp-page-handler="Upload" />
+    </form>
+    <span class="alert-info">@Html.Raw(Model.Message)
+    </span>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <tr>
+                <th>İşlem</th>
+                <th>Önizleme</th>
+                <th>Dosya Adı</th>
+            </tr>
+            @foreach (FileModel file in Model.Files)
+            {
+                <tr>
+                    <td valign="middle"><a href="/ResimIslemleri/@file.FileName">❌ Dosyayı Sil</a></td>
+                    <td>
+                        <a href="uploads/@file.FileName" target="_blank">
+                            <img src="uploads/@file.FileName" width="50" />
+                        </a>
+                    </td>
+                    <td valign="middle">@file.FileName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
