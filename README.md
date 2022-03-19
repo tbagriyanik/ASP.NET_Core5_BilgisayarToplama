@@ -1,5 +1,5 @@
 # ASP.NET_Core5_BilgisayarToplama
- Core .NET 5 ile kategori, ürün düzenleme, resim yollama gibi işlemler
+ Core .NET 5 ile kategori, ürün düzenleme, çerez desteği ile sepet yapımı, resim yollama gibi işlemler
  
 ![](https://github.com/tbagriyanik/ASP.NET_Core5_BilgisayarToplama/blob/main/Screen%20Shot%2003-19-22%20at%2008.14%20PM.JPG)
 
